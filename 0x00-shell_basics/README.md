@@ -5,3 +5,4 @@
 #####Hidden files
 ######I love numbers
 #######Welcome
+########Betty is my first directory
