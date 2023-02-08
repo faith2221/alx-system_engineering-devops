@@ -6,3 +6,4 @@
 ######I love numbers
 #######Welcome
 ########Betty is my first directory
+##########Bye bye Betty
