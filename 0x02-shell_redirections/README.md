@@ -8,3 +8,4 @@
 ######## It is a good file that cuts iron without making a noise
 #########Save current directory
 ##########Duplicate the last line
+###########No more javascript
