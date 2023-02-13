@@ -11,3 +11,4 @@
 ###########No more javascript
 ############Make directories count
 #############What is new
+##############Being unique is better than being perfect
