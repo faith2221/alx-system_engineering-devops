@@ -1,2 +1,1 @@
-#Hello World
-##Confused Smiley
+#Confused Smiley
