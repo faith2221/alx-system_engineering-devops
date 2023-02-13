@@ -9,3 +9,4 @@
 #########Save current directory
 ##########Duplicate the last line
 ###########No more javascript
+############Make directories count
