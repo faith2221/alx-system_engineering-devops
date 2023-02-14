@@ -9,3 +9,4 @@
 #########Every addition to true knowledge
 ##########Divide and rule
 ###########Love is anterior to life
+############There 10 types of people in the world
