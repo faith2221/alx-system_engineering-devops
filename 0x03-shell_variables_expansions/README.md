@@ -7,3 +7,4 @@
 #######Local variable
 ########Global variable
 #########Every addition to true knowledge
+##########Divide and rule
