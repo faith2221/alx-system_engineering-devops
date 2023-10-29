@@ -3,7 +3,7 @@
 # With a sleep 2 in between each iteration
 # Displays "I am invicible!!!" when receiving SIGTERM signal
 
-trap "'echo"I am invicible!!!"' SIGTERM
+trap 'echo "I am invicible!!!"' SIGTERM
 
 while true
 do
