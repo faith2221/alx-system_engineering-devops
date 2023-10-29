@@ -1,3 +1,3 @@
 #!/usr/bin/env bash
-# Script that displays the PID, along with process nam and processes
-pgrep bash -1
+# Script that displays the PID, along with process name and processes
+pgrep -l bash
