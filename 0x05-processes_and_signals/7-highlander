@@ -4,7 +4,6 @@
 # Displays "I am invicible!!!" when receiving SIGTERM signal
 
 trap 'echo "I am invicible!!!"' SIGTERM
-
 while true
 do
 	echo "To infinity and beyond"
