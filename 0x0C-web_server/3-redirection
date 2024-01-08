@@ -1,9 +1,17 @@
 #!/usr/bin/env bash
 # Bash script that redirects to another page.
 
+# Updates Packages before Installations
+sudo apt-get update
 sudo apt-get install -y nginx
-sudo ufw allow 'Nginx HTTP'
-echo "Hello World!" | sudo tee /var/www/html/index.nginx-debian.html
-line="\\\trewrite ^/rewrite_me http://edith2221.tech permanent;"
-sudo sed -i "26i $line" /etc/nginx/sites-available/default
+
+# Creates an index.html page
+echo "Hello World!" | sudo tee /var/www/html/index.html
+
+# Performs a 301 Redirection
+string_for_replacement="server_name _;\n\trewrite ^\/redirect_me https:\/\/github.com\/faith2221 permanent;"
+sudo sed -i "s/server_name _;/$string_for_replacement/" /etc/nginx/sites-enabled/default
+
+# Restarting Nginx service
 sudo service nginx restart
+
