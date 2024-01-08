@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+# Configures Nginx with a Custom Header
+sudo sed -i '/http {/a \\tadd_header X-Served-By '"$HOSTNAME"';' /etc/nginx/nginx.conf
+sudo service nginx restart
