@@ -1,0 +1,33 @@
+#!/usr/bin/env bash
+# Creates a script to install and configure HaProxy on lb-01 server
+# Configures HAproxy to send traffic to web-01 and web-02 servers
+# Distribbutes requests ussing roundrobin algorithm
+# Make sure sure that HaProxy can be managed via an init script
+
+# Install and configure Haproxy on my lb-01 server.
+sudo apt-get -y update
+apt-get -y install haproxy
+
+# Edits config file
+server_config=\
+"
+frontend faith2221
+        bind *:80
+	mode http
+        default_backend faith2221_backend
+
+backend faith2221_backend
+        balance roundrobin
+        server 243510-web-01 100.25.103.238 check
+        server 243510-web-02 54.160.69.44 check
+"
+echo "$server_config" | sudo tee -a /etc/haproxy/haproxy.cfg
+
+# Enables Haproxy to be started by init script
+echo "ENABLED=1"  | sudo tee -a /etc/default/haproxy
+
+# Testing the HaProxy configuration file
+sudo haproxy -c -f /etc/haproxy/haproxy.cfg
+
+# Restarting the ngoinx server
+sudo service haproxy restart       
