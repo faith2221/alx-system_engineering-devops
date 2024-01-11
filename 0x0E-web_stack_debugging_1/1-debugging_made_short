@@ -4,7 +4,7 @@
 sed -i 's/8080/80/g' /etc/nginx/sites-enabled/default
 
 # Restart anaginx
-service ngix restart
+service nginx restart
 
-# Terminates the first ngix proce=ss ID
+# Terminates the first ngix process ID
 pkill -o nginx
