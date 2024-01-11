@@ -1,4 +1,4 @@
-!#/usr/bin/env bash
+#!/usr/bin/env bash
 # Configuration for Nginx server to listen to port 80.
 
 # Creates a symbolic link (-s option) between the nginx config file and
