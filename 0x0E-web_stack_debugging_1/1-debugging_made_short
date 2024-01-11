@@ -1,12 +1,10 @@
 #!/usr/bin/env bash
-# Configuration for Nginx server to listen to port 80.
+# Debugging nginx.
+# Service (init) must say that ngix is not running.
+sed -i 's/8080/80/g' /etc/nginx/sites-enabled/default
 
-# Creates a symbolic link (-s option) between the nginx config file and
-# The enabled sites directory
-ln -s /etc/nginx/sites-available/default /etc/nginx/sites-enabled/default
+# Restart anaginx
+service ngix restart
 
-# Restart Nginx
-Service nginx restart
-
-# Terminates the first nginx process ID
-kill "$(pgrep 'nginx' | head -1)"
+# Terminates the first ngix proce=ss ID
+pkill -o nginx
