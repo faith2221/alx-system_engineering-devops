@@ -2,8 +2,17 @@
 # Bash script that configures the container to fit the above requirements
 # Fixes a web server to run Nginx as the nginx user listening on port 8080.
 
+# sets user in config by replacing '#user' and its value
 sed -i "s/#user www-data/user nginx/" /etc/nginx/nginx.conf
+
+# Replaces port 80 with 8080 in the sites-available config
 sed -i "s/80/8080/g" /etc/nginx/sites-available/default
+
+# Gives the owner permissions to read and write to config file
 chmod 644 /etc/nginx/nginx.conf
+
+# To avoid apache interferance to nginx, kill the process if running
 pkill apache2
+
+# Starts the nginx servce with the new nginx user
 sudo -u nginx service nginx start
