@@ -10,11 +10,11 @@ if __name__ == '__main__':
     base_data = "https://jsonplaceholder.typicode.com/users"
     url = base_data + "/" + employee_id
 
-    user_response = requests.get(url)
+    response = requests.get(url)
     employee_name = response.json().get('name')
 
     todo_data = url + "/todos"
-    user_response = requests.get(todo_data)
+    response = requests.get(todo_data)
     tasks = response.json()
     total_tasks = 0
     completed_tasks = []
