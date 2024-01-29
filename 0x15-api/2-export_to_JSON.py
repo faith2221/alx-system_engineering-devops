@@ -1,6 +1,7 @@
 #!/usr/bin/python3
 """Gathers the data fron an API and exports it to CSV."""
 
+import json
 import requests
 import sys
 
@@ -10,11 +11,11 @@ if __name__ == '__main__':
     base_data = "https://jsonplaceholder.typicode.com/users"
     url = base_data + "/" + employee_id
 
-    user_response = requests.get(url)
+    response = requests.get(url)
     username = response.json().get('username')
 
     todo_data = url + "/todos"
-    user_response = requests.get(todo_data)
+    response = requests.get(todo_data)
     tasks = response.json()
 
     dictionary = {employee_id: []}
