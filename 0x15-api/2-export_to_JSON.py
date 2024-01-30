@@ -1,29 +1,42 @@
 #!/usr/bin/python3
-"""Gathers the data fron an API and exports it to CSV."""
+"""
+Python script that uses REST API for a given employee ID,
+returns information about his/her TODO list progress.
+"""
 
-import json
-import requests
-import sys
 
+if __name__ == "__main__":
+    import json
+    import requests
+    import sys
 
-if __name__ == '__main__':
-    employee_id = sys.argv[1]
-    base_data = "https://jsonplaceholder.typicode.com/users"
-    url = base_data + "/" + employee_id
+    if __name__ == "__main__":
+        id = sys.argv[1]
 
-    response = requests.get(url)
-    username = response.json().get('username')
+        url_1 = f"https://jsonplaceholder.typicode.com/users/{id}"
+        url_2 = "https://jsonplaceholder.typicode.com/todos"
 
-    todo_data = url + "/todos"
-    response = requests.get(todo_data)
-    tasks = response.json()
+        p = requests.get(url_1)
+        content = json.loads(p.content)
+        name = content["name"]
 
-    dictionary = {employee_id: []}
-    for task in tasks:
-        dictionary[employee_id].append({
-            "task": task.get('title'),
-            "completed": task.get('completed'),
-            "username": username
-            })
-    with open('{}.json'.format(employee_id), 'w') as filename:
-        json.dump(dictionary, filename)
+        r = requests.get(url_2)
+        content_2 = json.loads(r.content)
+
+        dct = {}
+        sub = {}
+        ls = []
+
+        for item in content_2:
+            if item["userId"] == int(id):
+                sub = {}
+                sub["task"] = item["title"]
+                sub["completed"] = item["completed"]
+                sub["username"] = content["username"]
+                ls.append(sub)
+                print(">>", ls)
+
+        dct[id] = ls
+
+        with open(f"{id}.json", "w") as fd:
+            json.dump(dct, fd)

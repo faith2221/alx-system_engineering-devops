@@ -1,28 +1,36 @@
 #!/usr/bin/python3
-"""Gathers the data feom an API."""
-
-import requests
-import sys
+"""Gathers the data from an API."""
 
 
 if __name__ == "__main__":
-    url = "https://jsonplaceholder.typicode.com/"
+    import json
+    import requests
+    import sys
 
-    employee_id = sys.argv[1]
-    user_response = requests.get(url + "users/{}".format(employee_id))
-    user = user_response.json()
+    if __name__ == "__main__":
+        id = sys.argv[1]
 
-    params = {"userId": employee_id}
-    todos_response = requests.get(url + "todos", params=params)
-    todos = todos_response.json()
+        url_1 = f"https://jsonplaceholder.typicode.com/users/{id}"
+        url_2 = "https://jsonplaceholder.typicode.com/todos"
 
-    completed = []
-    for todo in todos:
-        if todo.get("completed") is True:
-            completed.append(todo.get("title"))
+        p = requests.get(url_1)
+        content = json.loads(p.content)
+        name = content["name"]
 
-    print("Employee {} is done with tasks({}/{})".format(user.get("name"),
-          len(completed), len(todos)))
+        r = requests.get(url_2)
+        content_2 = json.loads(r.content)
 
-    for complete in completed:
-        print("\t {}".format(complete))
+        titles = []
+        done = 0
+        total = 0
+
+        for item in content_2:
+            if item["userId"] == int(id):
+                total += 1
+                if item["completed"] is True:
+                    titles.append(item["title"])
+                    done += 1
+
+        print(f"Employee {name} is done with tasks({done}/{total}):")
+        for title in titles:
+            print(f"\t {title}")
