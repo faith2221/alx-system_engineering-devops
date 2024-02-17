@@ -1,10 +1,5 @@
 #!/usr/bin/env bash
 # Debugging nginx.
-# Service (init) must say that ngix is not running.
 sed -i 's/8080/80/g' /etc/nginx/sites-enabled/default
-
-# Restart anaginx
 service nginx restart
-
-# Terminates the first ngix process ID
 pkill -o nginx
