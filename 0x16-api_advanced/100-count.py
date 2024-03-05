@@ -4,8 +4,8 @@ recursive function that queries the Reddit API, parses the title of all hot.
 Prints a sorted count of given keywords.
 """
 
-import requests
 import json
+import requests
 
 
 def count_words(subreddit, word_list, after="", count=[]):
@@ -33,7 +33,7 @@ def count_words(subreddit, word_list, after="", count=[]):
             for i in range(len(word_list)):
                 for j in range(i + 1, len(word_list)):
                     if word_list[i].lower() == word_list[j].lower():
-                        save.append(str(j))
+                        save.append(j)
                         count[i] += count[j]
 
             for i in range(len(word_list)):
@@ -49,7 +49,7 @@ def count_words(subreddit, word_list, after="", count=[]):
                         word_list[j] = aux
 
             for i in range(len(word_list)):
-                if (count[i] > 0) and str(i) not in save:
+                if (count[i] > 0) and i not in save:
                     print("{}: {}".format(word_list[i].lower(), count[i]))
         else:
             count_words(subreddit, word_list, after, count)
