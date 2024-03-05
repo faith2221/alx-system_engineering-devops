@@ -3,6 +3,7 @@
 Script to print hot posts on a give Reddit Subreddit.
 """
 
+import json
 import requests
 
 
@@ -13,7 +14,8 @@ def top_ten(subreddit):
 
     # Defines headers for the HTTP request including User-Agent
     headers = {
-            "User-Agent": "Google Chrome Version 122.0.6261.95"}
+            "User-Agent": "Google Chrome Version 122.0.6261.95"
+            }
     response = requests.get(url, headers=headers, params=params)
     if response.status_code == 200:
         results = response.json()['data']['children']
