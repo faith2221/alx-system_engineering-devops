@@ -4,12 +4,10 @@ Lists 10 hot psts under given subreddit Using recursion
 """
 
 import requests
-after = None
 
 
 def recurse(subreddit, hot_list=[]):
     """If no results found, returns None."""
-    global after
     user = {"User-Agent": "0x16.api_advanced"}
     url = "https://www.reddit.com/r/{}/hot.json".format(subreddit)
     parameters = {'after': after}
@@ -19,11 +17,10 @@ def recurse(subreddit, hot_list=[]):
     if results.status_code == 200:
         after_data = results.json().get("data").get("after")
         if after_data is not None:
-            after = after_data
-            recurse(subreddit, hot_list)
+            recurse(subreddit, after_data, hot_list)
         all_titles = results.json().get("data").get("children")
-        for title_in all_titles:
+        for title_ in all_titles:
             hot_list.append(title_.get("data").get("title"))
             return hot_list
-        else:
-            return (None)
+    else:
+        return (None)
