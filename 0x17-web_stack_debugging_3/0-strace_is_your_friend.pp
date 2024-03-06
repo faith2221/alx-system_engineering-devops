@@ -2,7 +2,7 @@
 
 $file_edit = '/var/www/html/wp-settings.php'
 
-# Line were we change the line of code
+# Line where we change the line of code
 
 exec { 'replace_line':
 command => "sed -i 's/phpp/php/g' ${file_edit}"
