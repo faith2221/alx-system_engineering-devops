@@ -7,7 +7,7 @@ path	=> ['/usr/local/bin:/bin'],
 }
 
 # Restarting Nginx
--> exec { 'nginx-restart':
+exec { 'nginx-restart':
 command => '/etc/init.d/nginx restart',
 path	=> ['/etc/init.d'],
 }
